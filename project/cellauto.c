@@ -21,11 +21,11 @@ int main(){
   {
     for(j = 0; j < cols; j++)
     {
-      
       cells[i][j] = states[0];
-      cells[2][8] = states[2];
-      cells[8][1] = states[2];
-      cells[3][3] = states[2];
+      cells[1][1] = states[2];
+      cells[2][2] = states[2];
+      cells[0][0] = states[2];
+      cells[5][0] = states[2];
       printf("%d ", cells[i][j]);
     }  
     printf("\n");
@@ -204,12 +204,13 @@ int main(){
     }
   }
 
-  // check the left row
+  // check the left column
    for(i = 1; i < rows-1; i++){
-     for(j = 0; j < cols-1; j++){
+     for(j = 1; j < cols-1; j++){
        if(cells[i][0] == states[0]){
+	 
   	if(cells[i-1][0] == states[2]){
-  	  futurecells[0][0] = states[1];
+  	  futurecells[i][0] = states[1];
  	}
   	else if(cells[i+1][0] == states[2])
   	{
@@ -227,11 +228,12 @@ int main(){
  	{
   	  futurecells[i][0] = states[1];
   	}
+	
        } 
      }
   }
 
-   // check the right row
+   // check the right column
    for(i = 1; i < rows-1; i++){
      for(j = 0; j < cols-1; j++){
        if(cells[i][SIZE-1] == states[0]){
