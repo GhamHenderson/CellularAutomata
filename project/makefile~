@@ -1,0 +1,17 @@
+CC=gcc
+
+sumCalc.o: sumCalc.c
+	$(CC) -c sumCalc.c
+
+meanCalc.o: meanCalc.c
+	$(CC) -c meanCalc.c
+
+standardDev.o: standardDev.c
+	$(CC) -c standardDev.c
+
+myStats: myStats.c sumCalc.o meanCalc.o standardDev.o myStats.h 
+	$(CC) -o output myStats.c -L. -larchive -lm
+
+clean: *.o
+	rm -f *.o
+	rm -f myStats
