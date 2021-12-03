@@ -21,10 +21,11 @@ int main(){
   {
     for(j = 0; j < cols; j++)
     {
+      
       cells[i][j] = states[0];
-      cells[4][1] = states[2];
-      cells[1][5] = states[2];
       cells[2][8] = states[2];
+      cells[8][1] = states[2];
+      cells[3][3] = states[2];
       printf("%d ", cells[i][j]);
     }  
     printf("\n");
@@ -35,12 +36,11 @@ int main(){
     for(i = 0; i < rows; i++)
     {
       for(j = 0; j < cols; j++)
-      {
-      
-      futurecells[i][j] = cells[i][j];
-      printf("%d ", futurecells[i][j]);
-    }  
-    printf("\n");
+      {      
+	futurecells[i][j] = cells[i][j];
+	printf("%d ", futurecells[i][j]);
+     }  
+     printf("\n");
   }
   printf("\n\n\n");
  
@@ -58,8 +58,7 @@ int main(){
     {
       if(cells[i][j] == states[0])
       {
-        suscells++;
-	
+        suscells++;	
       }
 
       	//check if cells around sus cell are infected and if so make current cell exposed
@@ -128,13 +127,11 @@ int main(){
        {
 	  if(cells[SIZE-1][SIZE-2] == states[2])
 	  {
-	    futurecells[SIZE-1][SIZE-1] = states[1];
-	    
+	    futurecells[SIZE-1][SIZE-1] = states[1];	    
 	  }
 	  else if(cells[SIZE-2][SIZE-2] == states[2])
 	  {
 	     futurecells[SIZE-1][SIZE-1] = states[1];
-	    
 	  }
 	   else if(cells[SIZE-2][SIZE-1] == states[2])
 	  {
@@ -261,7 +258,42 @@ int main(){
      }
   }
 
-  
+   // Check all other cells that are not border cells.
+  for(i = 1; i < rows-1; i++)
+  {
+    for(j = 1; j < cols-1; j++)
+      {
+	if(cells[i][j] == states[0]){
+	  if(cells[i-1][j-1] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	  if(cells[i-1][j] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	  if(cells[i-1][j+1] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	  if(cells[i][j-1] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	  if(cells[i][j+1] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	  if(cells[i+1][j-1] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	  if(cells[i+1][j] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	  if(cells[i+1][j+1] == states[2]){
+	    futurecells[i][j] = states[1];
+	  }
+	}
+     }
+  }
+      
+
+   
    // Check if a cell is exposed
   for(i = 0; i < rows; i++)
   {
