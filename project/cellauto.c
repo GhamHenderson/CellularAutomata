@@ -22,9 +22,9 @@ int main(){
     for(j = 0; j < cols; j++)
     {
       cells[i][j] = states[0];
-      cells[1][8] = states[2];
+      cells[4][1] = states[2];
       cells[1][5] = states[2];
-      cells[8][8] = states[2];
+      cells[2][8] = states[2];
       printf("%d ", cells[i][j]);
     }  
     printf("\n");
@@ -207,9 +207,60 @@ int main(){
     }
   }
 
-  
+  // check the left row
+   for(i = 1; i < rows-1; i++){
+     for(j = 0; j < cols-1; j++){
+       if(cells[i][0] == states[0]){
+  	if(cells[i-1][0] == states[2]){
+  	  futurecells[0][0] = states[1];
+ 	}
+  	else if(cells[i+1][0] == states[2])
+  	{
+  	  futurecells[i][0] = states[1];
+  	}
+  	else if(cells[i-1][1] == states[2])
+  	{
+  	  futurecells[i][0] = states[1];
+  	}
+  	else if(cells[i][1] == states[2])
+  	{
+  	  futurecells[i][0] = states[1];
+  	}
+  	else if(cells[i+1][1] == states[2])
+ 	{
+  	  futurecells[i][0] = states[1];
+  	}
+       } 
+     }
+  }
 
-  
+   // check the right row
+   for(i = 1; i < rows-1; i++){
+     for(j = 0; j < cols-1; j++){
+       if(cells[i][SIZE-1] == states[0]){
+  	if(cells[i-1][SIZE-1] == states[2]){
+  	  futurecells[i][SIZE-1] = states[1];
+ 	}
+  	else if(cells[i+1][SIZE-1] == states[2])
+  	{
+  	  futurecells[i][SIZE-1] = states[1];
+  	}
+  	else if(cells[i-1][SIZE-2] == states[2])
+  	{
+  	  futurecells[i][SIZE-1] = states[1];
+  	}
+  	else if(cells[i][SIZE-2] == states[2])
+  	{
+  	  futurecells[i][SIZE-1] = states[1];
+  	}
+  	else if(cells[i+1][SIZE-2] == states[2])
+ 	{
+  	  futurecells[i][SIZE-1] = states[1];
+  	}
+       } 
+     }
+  }
+
   
    // Check if a cell is exposed
   for(i = 0; i < rows; i++)
