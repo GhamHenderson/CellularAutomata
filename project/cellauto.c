@@ -22,9 +22,8 @@ int main(){
     for(j = 0; j < cols; j++)
     {
       cells[i][j] = states[0];
-      cells[0][1] = states[2];
-      cells[0][8] = states[2];
-      cells[8][1] = states[2];
+      cells[1][8] = states[2];
+      cells[1][5] = states[2];
       cells[8][8] = states[2];
       printf("%d ", cells[i][j]);
     }  
@@ -67,75 +66,87 @@ int main(){
         //Top Left Corner
        if(cells[0][0] == states[0])
        {
-	  if(cells[i][j+1] == states[2])
+	  if(cells[0][1] == states[2])
 	  {
 	    futurecells[0][0] = states[1];
+	   
 	  }
-	  else if(cells[i+1][j] == states[2])
+	  else if(cells[1][0] == states[2])
 	  {
 	    futurecells[0][0] = states[1];
+	   
 	  }
-	   else if(cells[i+1][j+1] == states[2])
+	   else if(cells[1][1] == states[2])
 	  {
 	    futurecells[0][0] = states[1];
+	   
 	  }
        }
 
 	//Top right corner
        if(cells[0][SIZE-1] == states[0])
        {
-	  if(cells[i][j-1] == states[2])
+	  if(cells[0][SIZE-2] == states[2])
 	  {
 	    futurecells[0][SIZE-1] = states[1];
+	   
 	  }
-	  else if(cells[i+1][j-1] == states[2])
+	  else if(cells[1][SIZE-2] == states[2])
 	  {
 	    futurecells[0][SIZE-1] = states[1];
+	   
 	  }
-	   else if(cells[i+1][j] == states[2])
+	  else if(cells[1][SIZE-1] == states[2])
 	  {
 	    futurecells[0][SIZE-1] = states[1];
+	    
 	  }
        }
 
 	//Bottom Left Corner
        if(cells[SIZE-1][0] == states[0])
        {
-	  if(cells[i-1][j] == states[2])
+	  if(cells[SIZE-1][1] == states[2])
 	  {
 	    futurecells[SIZE-1][0] = states[1];
+	    
 	  }
-	  else if(cells[i+1][j+1] == states[2])
+	  else if(cells[SIZE-2][1] == states[2])
 	  {
 	     futurecells[SIZE-1][0] = states[1];
+	    
 	  }
-	   else if(cells[i][j+1] == states[2])
+	   else if(cells[SIZE-2][0] == states[2])
 	  {
 	     futurecells[SIZE-1][0] = states[1];
+	    
 	  }
        }
 
        //Bottom Right Corner
        if(cells[SIZE-1][SIZE-1] == states[0])
        {
-	  if(cells[i-1][j] == states[2])
+	  if(cells[SIZE-1][SIZE-2] == states[2])
 	  {
 	    futurecells[SIZE-1][SIZE-1] = states[1];
+	    
 	  }
-	  else if(cells[i-1][j-1] == states[2])
+	  else if(cells[SIZE-2][SIZE-2] == states[2])
 	  {
 	     futurecells[SIZE-1][SIZE-1] = states[1];
+	    
 	  }
-	   else if(cells[i][j-1] == states[2])
+	   else if(cells[SIZE-2][SIZE-1] == states[2])
 	  {
 	     futurecells[SIZE-1][SIZE-1] = states[1];
+	    
 	  }
        }
     }
   }
 
   //check the first row
-  for(i = 0; i < rows-1; i++)
+  for(i = 0; i < rows; i++)
   {
     for(j = 1; j < cols-1; j++)
     {
@@ -166,31 +177,31 @@ int main(){
   }
 
    //check the bottom row
-  for(i = SIZE-1; i < rows-1; i++)
+  for(i = SIZE-1; i < rows; i++)
   {
     for(j = 1; j < cols-1; j++)
     {
       if(cells[SIZE-1][j] == states[0])
       {
-	if(cells[SIZE-1][j-1] == states[2])
+	if(cells[i][j-1] == states[2])
 	{
-	  futurecells[SIZE-1][j] = states[1];
+	  futurecells[i][j] = states[1];
 	}
-	else if(cells[SIZE-1][j+1] == states[2])
+	else if(cells[i-1][j-1] == states[2])
 	{
-	  futurecells[SIZE-1][j] = states[1];
+	  futurecells[i][j] = states[1];
 	}
-	else if(cells[SIZE-2][j] == states[2])
+	else if(cells[i-1][j] == states[2])
 	{
-	  futurecells[SIZE-1][j] = states[1];
+	  futurecells[i][j] = states[1];
 	}
-	else if(cells[SIZE-2][j+1] == states[2])
+	else if(cells[i-1][j+1] == states[2])
 	{
-	  futurecells[SIZE-1][j] = states[1];
+	  futurecells[i][j] = states[1];
 	}
-	else if(cells[SIZE-2][j-1] == states[2])
+	else if(cells[i][j+1] == states[2])
 	{
-	  futurecells[SIZE-1][j] = states[1];
+	  futurecells[i][j] = states[1];
 	}
       } 
     }
@@ -205,9 +216,9 @@ int main(){
   {
     for(j = 0; j < cols; j++)
     {
-      if(cells[i][j] == states[1])
+      if(futurecells[i][j] == states[1])
       {
-        expcells++;
+	 expcells++;
 	//check if cells around exposed cell are infected and calculate chance of infection
 	//calculate chance of infection based on amount of infected neighbours and RNG between 0 and 1
       }
