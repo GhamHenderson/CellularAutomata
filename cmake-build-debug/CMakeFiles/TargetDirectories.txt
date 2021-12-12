@@ -1,3 +1,0 @@
-C:/Users/Graha/Documents/GitHub/CellularAutomata/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/Graha/Documents/GitHub/CellularAutomata/cmake-build-debug/CMakeFiles/CellularAutomata.dir
-C:/Users/Graha/Documents/GitHub/CellularAutomata/cmake-build-debug/CMakeFiles/edit_cache.dir
