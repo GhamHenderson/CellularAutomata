@@ -10,7 +10,15 @@
  * Example:  
  *    #include "timer.h"
  *    . . .
- *
+ *    double start, finish, elapsed;
+ *    . . .
+ *    GET_TIME(start);
+ *    . . .
+ *    Code to be timed
+ *    . . .
+ *    GET_TIME(finish);
+ *    elapsed = finish - start;
+ *    printf("The code to be timed took %e seconds\n", elapsed);
  *
  * IPP:  Section 3.6.1 (pp. 121 and ff.) and Section 6.1.2 (pp. 273 and ff.)
  */
