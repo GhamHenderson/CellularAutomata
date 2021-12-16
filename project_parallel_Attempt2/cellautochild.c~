@@ -7,7 +7,6 @@
 #define SIZE 10
 
 extern int thread_count;
-
 void *cellautochild(void* rank){
     pthread_mutex_t lock;
     long my_rank = (long) rank;
@@ -18,11 +17,9 @@ void *cellautochild(void* rank){
     double start, finish, elapsed;
     GET_TIME(start);
 
-    
     // 0 = sus, 1 = exposed, 2 = infected,
     // 3 = recovered, 4 = dead
     int states[5] = {0,1,2,3,4};
-
     // Grid Variables
     int i,j,k;
     int gens = 10;
@@ -42,6 +39,7 @@ void *cellautochild(void* rank){
     extern unsigned int recoveredcells ;
     extern unsigned int deadcells;
     srand((unsigned int)time(NULL));
+   
 
 
     float randNum = ((float)rand()/(float)(RAND_MAX)) * (1 - 0);
@@ -79,7 +77,13 @@ void *cellautochild(void* rank){
 
     //Create the generations
     for(k = 0; k < gens; k++){
-        //////////////////////////////////////////////////////////////SUSCEPTIBLE//////////////////////////////////////////////////
+      suscells=0;
+      expcells=0;
+      infectedcells=0;
+      recoveredcells=0;
+      deadcells=0;
+
+      //////////////////////////////////////////////////////////////SUSCEPTIBLE//////////////////////////////////////////////////
         // Check if a cell is sus
       pthread_mutex_lock(&lock);
       for(i = my_first_i; i < my_last_i; i++){
@@ -521,7 +525,6 @@ void *cellautochild(void* rank){
                             neighbourhood+=deadN;
                         }
 
-                        //printf("\nneigh: %.2f, rand: %.2f  ", neighbourhood, randNum);
 
                         if(neighbourhood > randNum){
                             futurecells[i][j] = states[2];
@@ -575,7 +578,6 @@ void *cellautochild(void* rank){
                             neighbourhood+=deadN;
                         }
 
-                        //printf("\nneigh: %.2f, rand: %.2f  ", neighbourhood, randNum);
 
                         if(neighbourhood > randNum){
                             futurecells[i][j] = states[2];
@@ -627,7 +629,6 @@ void *cellautochild(void* rank){
                             neighbourhood+=deadN;
                         }
 
-                        // printf("\nneigh: %.2f, rand: %.2f  ", neighbourhood, randNum);
 
                         if(neighbourhood > randNum){
                             futurecells[i][j] = states[2];
@@ -680,7 +681,6 @@ void *cellautochild(void* rank){
                             neighbourhood+=deadN;
                         }
 
-                        // printf("\nneigh: %.2f, rand: %.2f  ", neighbourhood, randNum);
 
                         if(neighbourhood > randNum){
                             futurecells[i][j] = states[2];
@@ -753,7 +753,6 @@ void *cellautochild(void* rank){
                             neighbourhood+=deadN;
                         }
 
-                        //printf("\nneigh: %.2f, rand: %.2f  ", neighbourhood, randNum);
 
                         if(neighbourhood > randNum){
                             futurecells[i][j] = states[2];
@@ -826,27 +825,10 @@ void *cellautochild(void* rank){
                 {
                     cells[i][j] = futurecells[i][j];
                 }
-
             }
 	    pthread_mutex_unlock(&lock);
 
-	    
-            //Print Results
-            printf("\n(0)Sus Cells = %d ", suscells);
-            printf("\n(1)Exposed Cells = %d ", expcells);
-            printf("\n(2)Infected Cells = %d ", infectedcells);
-            printf("\n(3)Recovered Cells = %d ", recoveredcells);
-            printf("\n(4)Dead Cells = %d ", deadcells);
-            printf("\n Thread ID : %ld \n",my_rank);
-
-            //Reset variables.
-            suscells=0;
-            expcells=0;
-            infectedcells=0;
-            recoveredcells=0;
-            deadcells=0;
-
-        }
+                   }
 	
     }
     

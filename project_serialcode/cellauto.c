@@ -1,3 +1,7 @@
+/*
+ Graham Henderson B00130193,James Moore B00129782, Eduard Iacob B00125295, Alan Johnson B00090030,
+ */
+
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -66,8 +70,7 @@ int main(){
     for(j = 0; j < cols; j++){      
       futurecells[i][j] = cells[i][j];
       //printf("%d ", futurecells[i][j]);
-    }  
-    
+    }    
   }
 
   //Create the generations
@@ -403,9 +406,11 @@ int main(){
       {
 	futurecells[0][SIZE-1] = states[2];
       }
+
+
+    
     neighbourhood = 0.0;
-    randNum = ((float)rand()/(float)(RAND_MAX)) * (1 - 0);
-      
+    randNum = ((float)rand()/(float)(RAND_MAX)) * (1 - 0);  
     //Bottom Left Corner
     if(cells[SIZE-1][0] == states[1])
       {
@@ -440,6 +445,7 @@ int main(){
       {
 	futurecells[SIZE-1][0] = states[2];
       }
+    
     neighbourhood = 0.0;
     randNum = ((float)rand()/(float)(RAND_MAX)) * (1 - 0);
 
@@ -822,6 +828,7 @@ int main(){
 
 	
   }
+  
   GET_TIME(finish);
   elapsed = finish - start;
   printf("The code to be timed took %e seconds\n", elapsed);
